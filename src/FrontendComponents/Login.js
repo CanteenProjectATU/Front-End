@@ -22,7 +22,7 @@ const LoginPage = () => {
             .then(response => { //if the user has entered a valid password
 
                 // If authentication is successful, save the authentication token to local storage
-                const token = response.data.token;
+                const token = response.data.message;
                 localStorage.setItem('authenticationToken', token); // Authentication token is stored in local storage
                 localStorage.setItem('isAdmin', true); // Sets isAdin in localStorage to true
 
