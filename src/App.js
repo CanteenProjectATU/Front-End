@@ -15,6 +15,7 @@ import EditMenuItem from './FrontendComponents/EditMenuItem';
 import Day from './FrontendComponents/Day';
 import AddMenuItemToDay from './FrontendComponents/AddMenuItemToDay';
 import LoginPage from './FrontendComponents/Login';
+import ChangePassword from './FrontendComponents/ChangePassword';
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
           {/* this route is for the weekly menu days */}
           <Route path="/day/:day" element={<Day></Day>}></Route>
           <Route path='/day/:day/addItem' element={<AddMenuItemToDay></AddMenuItemToDay>}></Route>
+          <Route path='/changePassword' element={<ChangePassword></ChangePassword>}></Route>
           
         </Routes>
 

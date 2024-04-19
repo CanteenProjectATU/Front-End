@@ -52,10 +52,10 @@ const LoginPage = () => {
             {/* This button will call the handleLogin function (check the password) */}
             <button onClick={handleLogin} className='buttons'>Submit Password</button>
             <br></br>
-            <h2>Not Admin? Just continue as a regular user!</h2>
+            <h2>Change Password?</h2>
             <br></br>
             {/* This just brings you straight to home as a user who can only read and navigate the app */}
-            <button onClick={() => navigate('/Home')} className='buttons'>Continue as User</button>
+            <button onClick={() => navigate('/changePassword')} className='buttons'>Change Password</button>
         </div>
     )
 
