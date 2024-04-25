@@ -8,7 +8,7 @@ import { getAuthenticationTokenFromLocalStorage } from '../utilities/utils';
 const AddMenuItemToDay = () => {
     const { day } = useParams();
     const [menuItems, setMenuItem] = useState([]);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     //get all the menu items from database
     useEffect(
@@ -45,6 +45,7 @@ const AddMenuItemToDay = () => {
             // navigate(`/day/${day}`)
             //if it is added correctly alert the user that it worked on they will end up clicking multiple times
             alert('Added menu item to ' + day)
+            navigate('/day'+day)
         }).catch((error) => { //catch errors - is to send an error message to the console
                 console.log(error.response.data.message);
             });
@@ -80,6 +81,7 @@ const AddMenuItemToDay = () => {
                     myMenuItem={item}  //passes in this items information
                     onClick={() => addToDay(item._id)} //When the card is clicked call the addToDay function
                     isClickable={true} // This allows the entire card to be clicked as I have not assigned a button for add to day
+                    isInDay={false}
                     ReloadData={Reload}
                 />
                 
