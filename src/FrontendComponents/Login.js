@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../CssFiles/Login.css';
+import { getAuthenticationTokenFromLocalStorage } from "../utilities/utils";
 
 //This is the page for the admin to enter a password or a student to use the app
 const LoginPage = () => {
@@ -41,6 +42,16 @@ const LoginPage = () => {
             });
     }
 
+    // Handles user logging out
+    const handleLogout = () => {
+        
+        if (getAuthenticationTokenFromLocalStorage()) {
+            localStorage.removeItem("isAdmin"); // Remove isAdmin from localStorage
+            localStorage.removeItem("authenticationToken") // Remove authentication token from localStorage
+            window.location.reload(); // Reload the page
+        }
+    };
+
     //Shows on the page
     return(
         //uses css
@@ -51,6 +62,12 @@ const LoginPage = () => {
             <br></br>
             {/* This button will call the handleLogin function (check the password) */}
             <button onClick={handleLogin} className='buttons'>Submit Password</button>
+
+            {/* Logout button is only displayed when user is already logged in */}
+            {getAuthenticationTokenFromLocalStorage() && (
+                <button onClick={handleLogout} className='buttons'>Logout</button>
+            )}
+
             <br></br>
             <h2>Change Password?</h2>
             <br></br>
