@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import MenuItems from './MenuItem';
 import { getAuthenticationTokenFromLocalStorage } from '../utilities/utils';
 
@@ -50,6 +50,23 @@ const AddMenuItemToDay = () => {
             });
     }
 
+    //to make the component automatically update when deleted so you dont have to refresh
+    const Reload = (e) => {
+
+        const token = getAuthenticationTokenFromLocalStorage(); // Retrieve authentication token from localStorage
+        //get all the data from the database
+        axios.get(`http://localhost:4000/menu_items`, {
+            headers: {
+                Authorization: `${token}` // Include token in the request headers
+            }
+        }).then((response) => {
+            setMenuItem(response.data)
+        }).catch((error) => { //send an error message to the console
+            console.log(error);
+        });
+
+    }
+
     
 
     return (
@@ -63,6 +80,7 @@ const AddMenuItemToDay = () => {
                     myMenuItem={item}  //passes in this items information
                     onClick={() => addToDay(item._id)} //When the card is clicked call the addToDay function
                     isClickable={true} // This allows the entire card to be clicked as I have not assigned a button for add to day
+                    ReloadData={Reload}
                 />
                 
             ))}
