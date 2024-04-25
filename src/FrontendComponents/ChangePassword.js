@@ -22,6 +22,7 @@ const ChangePassword = () => {
     try {
         
         await axios.put('http://localhost:4000/update_password', {
+            username: "Admin",
             oldPassword: oldPassword,
             newPassword: newPassword
         }, {
@@ -35,7 +36,7 @@ const ChangePassword = () => {
 
     }
     catch(error){
-        console.log(error);
+        console.log(error.response.data.message);
     }
    }
 
@@ -55,7 +56,7 @@ const ChangePassword = () => {
             <br></br>
             <br></br>
             {/* This just brings you straight to home as a user who can only read and navigate the app */}
-            <button className='buttons'   onClick={() =>  passwordChanger}>Change Password</button>
+            <button className='buttons' onClick={passwordChanger}>Change Password</button>
             
         </div>
     );
